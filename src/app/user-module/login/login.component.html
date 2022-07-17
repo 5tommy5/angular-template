@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="loading loading-absolute" *ngIf="loading"><div></div><div></div><div></div><div></div></div>
+    <div class="logo">
+        <span class="logo-text" [class.logoAbsolute]="loading">CryptoFork</span>
+    </div>
+    <form class="frm" [class.bluredAnimation]="loading" [class.redBorder]="isError">
+        <div class="form-field">
+            <label for="email">Email</label> 
+            <input id="email" type="email" name="email" placeholder="superhero157@heroes.com" [disabled]="loading" [(ngModel)]="user.email">
+        </div>
+        <div class="form-field">
+            <label for="pass">Password</label> 
+            <input id="pass" type="password" name="pass" placeholder="Enter your password" [disabled]="loading" [(ngModel)]="user.password">
+        </div>
+        <div [class.error]="isError" [class.dsblError]="!isError">
+            {{error}}
+        </div>
+        <div class="buttons">
+            <a [routerLink]="['/registration']" class="link">I have not account</a>
+            <button [disabled]="loading" (click)="login()">Login</button>
+        </div>
+
+        <button  class="google-button" (click)="externalLogin()" [disabled]="loading">
+            <img width="20px"  alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Sign in with Google
+        </button>
+    </form>
+</div>

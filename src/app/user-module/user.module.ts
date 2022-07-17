@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app-component/app.component';
 
-import { AppRoutingModule } from './app-routing.module';
-import { UserModule } from './user-module/user.module';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrationComponent } from './registration/registration.component';
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SharedModule } from '../shared-module/shared.module';
+import { ConfirmationComponent } from './confirm-email/confirmation.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login'; 
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { JwtModule } from '@auth0/angular-jwt';
+
 
 export function tokenGetter() {
   return sessionStorage.getItem("token");
@@ -16,12 +24,19 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    RegistrationComponent,
+    LoginComponent,
+    ConfirmationComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule,
-    UserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    SharedModule,
+    SocialLoginModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -30,7 +45,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [
+  providers:[
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -52,6 +67,10 @@ export function tokenGetter() {
       } as SocialAuthServiceConfig
     }
   ],
-  bootstrap: [AppComponent]
+  exports: [
+    RegistrationComponent,
+    LoginComponent,
+    ConfirmationComponent
+  ]
 })
-export class AppModule { }
+export class UserModule { }
