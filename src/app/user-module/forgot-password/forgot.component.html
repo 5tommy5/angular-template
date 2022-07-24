@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div class="loading loading-absolute" *ngIf="loading"><div></div><div></div><div></div><div></div></div>
+    <div class="logo">
+        <span class="logo-text" [class.logoAbsolute]="loading">CryptoFork</span>
+    </div>
+    <form class="frm" [class.bluredAnimation]="loading">
+        <div class="form-field" *ngIf="!code">
+            <label for="email">Email</label> 
+            <input id="email" type="email" name="email" placeholder="superhero157@heroes.com" [disabled]="loading" [(ngModel)]="model.email">
+        </div>
+        <div class="form-field" *ngIf="code">
+            <label for="pass">Password</label> 
+            <input id="pass" type="password" name="pass" placeholder="Enter your password" [disabled]="loading" [(ngModel)]="pass">
+        </div>
+        <div class="buttons">
+            <button [disabled]="loading" (click)="confirm()" *ngIf="!code">Send link to recover password</button>
+            <button [disabled]="loading" (click)="recover()" *ngIf="code">Recover</button>
+        </div>
+    </form>
+    <div *ngIf="!loading">
+        {{text}}
+    </div>
+</div>

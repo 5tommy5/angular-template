@@ -15,6 +15,7 @@ import { ConfirmationComponent } from './confirm-email/confirmation.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login'; 
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ForgotComponent } from './forgot-password/forgot.component';
 
 
 export function tokenGetter() {
@@ -26,7 +27,8 @@ export function tokenGetter() {
   declarations: [
     RegistrationComponent,
     LoginComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ForgotComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,7 @@ export function tokenGetter() {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '{YOUR CLIENT ID}', {
+              '1035178665133-piftrpk618n3k1d5rbuifc5clp7rftb7.apps.googleusercontent.com', {
                 scope: 'email',
                 plugin_name: 'CryptoFork'
               }
@@ -70,7 +72,8 @@ export function tokenGetter() {
   exports: [
     RegistrationComponent,
     LoginComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ForgotComponent
   ]
 })
 export class UserModule { }

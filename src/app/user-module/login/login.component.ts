@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
       else{
         sessionStorage.setItem("token", res.tokens.accessToken);
         sessionStorage.setItem("refreshToken", res.tokens.refreshToken);
+        this.router.navigateByUrl("/");
       }
     })
   }

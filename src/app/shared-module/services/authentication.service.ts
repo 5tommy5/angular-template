@@ -34,7 +34,7 @@ export class AuthenticationService {
     }
 
   public registerUser = (body: RegistrationModel) => {
-    body.clientUri = "http:localhost:4200/confirmation";
+    body.clientUri = "http://localhost:4200/confirmation";
     return this.http.post<ResponseModel> (this.createCompleteRoute("api/auth/register"), body);
   }
 
@@ -43,6 +43,7 @@ export class AuthenticationService {
   }
 
   public forgotPassword = (body: ForgetPasswordModel) => {
+    body.clientUri = "http://localhost:4200/forgot"
     return this.http.post(this.createCompleteRoute("api/auth/forgetpassword"), body);
   }
 
@@ -67,7 +68,7 @@ export class AuthenticationService {
   }
 
   public resendConfirmationEmail = (body: ResendConfirmationCodeModel)=>{
-    body.clientUri = "http:localhost:4200/confirmation";
+    body.clientUri = "http://localhost:4200/confirmation";
     console.log(body);
     return this.http.post(this.createCompleteRoute("api/auth/ResendConfirmationCode"), body);
   }
